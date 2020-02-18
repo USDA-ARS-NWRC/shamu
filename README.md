@@ -1,4 +1,4 @@
-# SHAMU v0.1.0
+# SHAMU v0.1.1
 
 shamu is a shortcut commandline tool to quickly open and enter a docker
 interactively with mounted volumes. Specifically Shamu tackles that docker
