@@ -49,25 +49,26 @@ class DockerLaunch(object):
         result = {}
 
         # Check the paths.
-        for v in self.volumes:
-            paths = v.split(":")
+        if self.volumes != None:
+            for v in self.volumes:
+                paths = v.split(":")
 
-            # Unix paths
-            if len(paths) == 2:
-                path, mountable = paths[0:2]
+                # Unix paths
+                if len(paths) == 2:
+                    path, mountable = paths[0:2]
 
-            # Likely a windows sitch
-            elif len(paths) == 3:
-                drive, path, mountable = paths[0:3]
-                path = drive + path
+                # Likely a windows sitch
+                elif len(paths) == 3:
+                    drive, path, mountable = paths[0:3]
+                    path = drive + path
 
-            else:
-                raise ValueError("Unable to parse local paths without a single"
-                                 " colon and no more than two colons in it."
-                                 "\n Problem Raised by {}"
-                                 "".format(v))
-            path = abspath(expanduser(path))
-            result[path] = mountable
+                else:
+                    raise ValueError("Unable to parse local paths without a single"
+                                     " colon and no more than two colons in it."
+                                     "\n Problem Raised by {}"
+                                     "".format(v))
+                path = abspath(expanduser(path))
+                result[path] = mountable
 
         return result
 
